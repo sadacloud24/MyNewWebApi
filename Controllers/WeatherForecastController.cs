@@ -1,9 +1,12 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Identity.Web.Resource;
 
 namespace MyNewWebApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    //[Authorize()]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
@@ -18,6 +21,8 @@ namespace MyNewWebApi.Controllers
             _logger = logger;
         }
 
+        [Authorize(Roles = "DaemonAppRole")]
+        //[RequiredScope("MyApi.Read")]
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
