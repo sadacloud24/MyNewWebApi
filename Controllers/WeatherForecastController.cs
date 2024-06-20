@@ -21,7 +21,7 @@ namespace MyNewWebApi.Controllers
             _logger = logger;
         }
 
-        [Authorize(Roles = "DaemonAppRole")]
+        [Authorize(Roles = "ApiReadWriteRole")]
         //[RequiredScope("MyApi.Read")]
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
